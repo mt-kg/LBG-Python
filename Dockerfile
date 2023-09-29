@@ -8,7 +8,7 @@ FROM python:3.11
  RUN pip install -r requirements.txt
 
 #Env variable for DB password
-#ENV PASSWORD="root"
+#ENV PORT="8081"
 
 # Expose correct port
 #EXPOSE 8080
