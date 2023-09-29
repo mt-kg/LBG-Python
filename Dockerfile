@@ -14,4 +14,5 @@ ENV PORT=8080
 #EXPOSE 8080
 
 # Create an entrypoint
-ENTRYPOINT [ "python", "lbg.py" ]
+#ENTRYPOINT [ "python", "lbg.py" ]
+ENTRYPOINT python lbg.py --PORT ${PORT}
