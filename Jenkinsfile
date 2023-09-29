@@ -47,7 +47,7 @@ pipeline{
             stage('Run tests here'){
                 steps{
                     sh '''
-                    echo 'run tests will be here'
+                    python lbg.test.py
                     '''
                 }
             }
