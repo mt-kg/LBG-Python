@@ -38,8 +38,9 @@ pipeline{
                     docker stop lbg && (docker rm lbg) || (docker rm lbg && sleep 1 || sleep 1)
 
                     #Run containers from images:
-                    export PORT=9000
-                    docker run -d -p 80:${PORT} -e PORT=${PORT} --network sprint2 --name lbg mtkg/lbg-python-sprint2:latest  
+                    #export PORT=9000
+                    #docker run -d -p 80:${PORT} -e PORT=${PORT} --network sprint2 --name lbg mtkg/lbg-python-sprint2:latest
+                    docker run -d -p 80:8080 --network sprint2 --name lbg mtkg/lbg-python-sprint2:latest
                     '''
                 }
             }
