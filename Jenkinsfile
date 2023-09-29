@@ -50,12 +50,13 @@ pipeline{
             stage('Run tests here'){
                 steps{
                     sh '''
-                    python lbg.test.py
+                    #python lbg.test.py
                     #NEED TO INSTALL PYTHON & CHROMIUM ON SERVERS TO GET THIS TO WORK...
                     #PHYTHON & PYTHON3 INSTALLED ON BOTH JENKINS & APP SERVER
                     #CHROMIUM INSTALLED ON JENKINS SERVER
                     #NO SPACE LEFT ON APP SERVER FOR CHROMIUM!!
-                    #Comment to trigger build - 2
+                    #Deleted images from app server and installed chromium, but now can't SSH to server...
+                    #Comment to trigger build - 3
                     '''
                 }
             }
