@@ -38,11 +38,11 @@ docker build -t mtkg/lbg-python-sprint2:latest .
 docker push mtkg/lbg-python-sprint2:latest
 
 #Run up image as new container:
-docker run -d -p 80:8080 --name lbg mtkg/lbg-python-sprint2:latest    
+#docker run -d -p 80:8080 --name lbg mtkg/lbg-python-sprint2:latest    
 
 #Set port on CLI
-#export PORT=9000
-#docker run -d -p 80:${PORT} -e PORT=${PORT} --name lbg mtkg/lbg-python-sprint2:latest    
+export PORT=9000
+docker run -d -p 80:${PORT} -e PORT=${PORT} --name lbg mtkg/lbg-python-sprint2:latest    
 
 #Ask user for port
 #read -p "Which port? " PORT
