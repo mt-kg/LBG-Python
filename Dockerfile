@@ -11,7 +11,7 @@ FROM python:3.11
 #ENV PASSWORD="root"
 
 # Expose correct port
-#EXPOSE 5000
+#EXPOSE 8080
 
 # Create an entrypoint
 ENTRYPOINT [ "python", "lbg.py" ]
