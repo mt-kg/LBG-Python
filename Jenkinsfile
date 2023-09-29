@@ -1,5 +1,8 @@
 pipeline{
         agent any
+        environment{
+            PORT = 8080
+        }
         stages{
             stage('Build images on Jenkins'){
                 steps{
@@ -39,15 +42,16 @@ pipeline{
 
                     #Run containers from images:
                     #export PORT=9000
-                    #docker run -d -p 80:${PORT} -e PORT=${PORT} --network sprint2 --name lbg mtkg/lbg-python-sprint2:latest
-                    docker run -d -p 80:8080 --network sprint2 --name lbg mtkg/lbg-python-sprint2:latest
+                    docker run -d -p 80:${PORT} -e PORT=${PORT} --network sprint2 --name lbg mtkg/lbg-python-sprint2:latest
+                    #docker run -d -p 80:8080 --network sprint2 --name lbg mtkg/lbg-python-sprint2:latest
                     '''
                 }
             }
             stage('Run tests here'){
                 steps{
                     sh '''
-                    python lbg.test.py
+                    #python lbg.test.py
+                    #NEED TO INSTALL PYTHON & CHROMIUM ON SERVERS TO GET THIS TO WORK...
                     #Comment to trigger build - 1
                     '''
                 }
