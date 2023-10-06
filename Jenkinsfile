@@ -46,18 +46,23 @@ pipeline{
                     #ssh -i "~/.ssh/id_rsa_new_vm" jenkins@10.154.0.27 << EOF
 
                     #Pull latest images from DockerHub:
-                    docker image pull mtkg/lbg-python-sprint2:latest
+                    #docker image pull mtkg/lbg-python-sprint2:latest
 
                     #Create network if it doesn't already exist:
-                    docker network inspect sprint2 && sleep 1 || docker network create sprint2
+                    #docker network inspect sprint2 && sleep 1 || docker network create sprint2
 
                     #Stop and remove existing containers:
-                    docker stop lbg && (docker rm lbg) || (docker rm lbg && sleep 1 || sleep 1)
+                    #docker stop lbg && (docker rm lbg) || (docker rm lbg && sleep 1 || sleep 1)
 
                     #Run containers from images:
                     #export PORT=9000
                     #docker run -d -p 80:${PORT} -e PORT=${PORT} --network sprint2 --name lbg mtkg/lbg-python-sprint2:latest
-                    docker run -d -p 80:8080 --network sprint2 --name lbg mtkg/lbg-python-sprint2:latest
+                    #docker run -d -p 80:8080 --network sprint2 --name lbg mtkg/lbg-python-sprint2:latest
+
+                    #K8s run:-
+                    kubectl apply -f ./kubernetes -n production
+                    kubectl rollout restart deployment flask-deployment -n production
+
                     '''
                 }
             }
