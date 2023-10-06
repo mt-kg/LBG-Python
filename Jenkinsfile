@@ -7,8 +7,8 @@ pipeline{
             stage('Build images on Jenkins'){
                 steps{
                     sh '''
-                    docker build -t mtkg/lbg-python-sprint2:latest mtkg/lbg-python-sprint2:v$BUILD_NUMBER .
-                    docker build -t gcr.io/lbg-mea-14/mk-lbg-python-sprint2:latest gcr.io/lbg-mea-14/mk-lbg-python-sprint2:v$BUILD_NUMBER .
+                    docker build -t mtkg/lbg-python-sprint2:latest -t mtkg/lbg-python-sprint2:v$BUILD_NUMBER .
+                    docker build -t gcr.io/lbg-mea-14/mk-lbg-python-sprint2:latest -t gcr.io/lbg-mea-14/mk-lbg-python-sprint2:v$BUILD_NUMBER .
                     '''
                 }
             }
