@@ -25,11 +25,11 @@ pipeline{
                     '''
                 }
             }
-            stage('Deploy containers to app server'){
+            stage('Run the app'){
                 steps{
                     sh '''
                     #SSH onto app server as jenkins user:
-                    ssh -i "~/.ssh/id_rsa_new_vm" jenkins@10.154.0.27 << EOF
+                    #ssh -i "~/.ssh/id_rsa_new_vm" jenkins@10.154.0.27 << EOF
 
                     #Pull latest images from DockerHub:
                     docker image pull mtkg/lbg-python-sprint2:latest
@@ -42,14 +42,15 @@ pipeline{
 
                     #Run containers from images:
                     #export PORT=9000
-                    docker run -d -p 80:${PORT} -e PORT=${PORT} --network sprint2 --name lbg mtkg/lbg-python-sprint2:latest
-                    #docker run -d -p 80:8080 --network sprint2 --name lbg mtkg/lbg-python-sprint2:latest
+                    #docker run -d -p 80:${PORT} -e PORT=${PORT} --network sprint2 --name lbg mtkg/lbg-python-sprint2:latest
+                    docker run -d -p 80:8080 --network sprint2 --name lbg mtkg/lbg-python-sprint2:latest
                     '''
                 }
             }
             stage('Run tests here'){
                 steps{
                     sh '''
+                    echo "no testing expected"
                     #python lbg.test.py
                     #NEED TO INSTALL PYTHON & CHROMIUM ON SERVERS TO GET THIS TO WORK...
                     #PHYTHON & PYTHON3 INSTALLED ON BOTH JENKINS & APP SERVER
