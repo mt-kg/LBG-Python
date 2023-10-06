@@ -8,6 +8,7 @@ pipeline{
                 steps{
                     sh '''
                     docker build -t mtkg/lbg-python-sprint2:latest .
+                    docker build -t gcr.io/lbg-mea-14/lbg-python-sprint2:latest .
                     '''
                 }
             }
@@ -15,6 +16,14 @@ pipeline{
                 steps{
                     sh '''
                     docker push mtkg/lbg-python-sprint2:latest
+                    '''
+                }
+            }
+            stage('Push images to GCR'){
+                steps{
+                    sh '''
+                    #push to GCR
+                    docker push gcr.io/lbg-mea-14/lbg-python-sprint2:latest
                     '''
                 }
             }
