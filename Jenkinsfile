@@ -7,8 +7,8 @@ pipeline{
             stage('Build images on Jenkins'){
                 steps{
                     sh '''
-                    docker build -t mtkg/lbg-python-sprint2:latest .
-                    docker build -t gcr.io/lbg-mea-14/mk-lbg-python-sprint2:latest .
+                    docker build -t mtkg/lbg-python-sprint2:latest mtkg/lbg-python-sprint2:v$BUILD_NUMBER .
+                    docker build -t gcr.io/lbg-mea-14/mk-lbg-python-sprint2:latest gcr.io/lbg-mea-14/mk-lbg-python-sprint2:v$BUILD_NUMBER .
                     '''
                 }
             }
@@ -16,6 +16,7 @@ pipeline{
                 steps{
                     sh '''
                     docker push mtkg/lbg-python-sprint2:latest
+                    docker push mtkg/lbg-python-sprint2:v$BUILD_NUMBER
                     '''
                 }
             }
@@ -24,6 +25,7 @@ pipeline{
                     sh '''
                     #push to GCR
                     docker push gcr.io/lbg-mea-14/mk-lbg-python-sprint2:latest
+                    docker push gcr.io/lbg-mea-14/mk-lbg-python-sprint2:v$BUILD_NUMBER
                     '''
                 }
             }
@@ -31,6 +33,9 @@ pipeline{
                 steps{
                     sh '''
                     docker rmi mtkg/lbg-python-sprint2:latest
+                    docker rmi mtkg/lbg-python-sprint2:v$BUILD_NUMBER
+                    docker rmi gcr.io/lbg-mea-14/mk-lbg-python-sprint2:latest
+                    docker rmi gcr.io/lbg-mea-14/mk-lbg-python-sprint2:v$BUILD_NUMBER
                     '''
                 }
             }
@@ -72,3 +77,8 @@ pipeline{
             }
         }
 }
+
+// TO DO:
+// Add build verions
+// Add yaml files
+// Add branching if/else
